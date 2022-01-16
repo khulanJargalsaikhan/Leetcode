@@ -6,10 +6,10 @@ import java.util.Arrays;
 public class PlusOne {
 
 	public static void main(String[] args) {
-		System.out.println(Arrays.toString(plusOne(new int[] {1,2,3})));
-		System.out.println(Arrays.toString(plusOne(new int[] {4,3,2,1})));
+		//System.out.println(Arrays.toString(plusOne(new int[] {1,2,3})));
+		//System.out.println(Arrays.toString(plusOne(new int[] {4,3,2,1})));
 		System.out.println(Arrays.toString(plusOne(new int[] {9})));
-		System.out.println(Arrays.toString(plusOne(new int[] {9,8,7,6,5,4,3,2,1,0})));
+		//System.out.println(Arrays.toString(plusOne(new int[] {9,8,7,6,5,4,3,2,1,0})));
 
 	}
 
@@ -35,6 +35,7 @@ Incrementing by one gives 4321 + 1 = 4322.
 Thus, the result should be [4,3,2,2].
 	 */
 
+	// my solution, some input works, some does not
 	public static int[] plusOne1(int[] digits) {
 
 		StringBuilder sb = new StringBuilder();
@@ -59,6 +60,8 @@ Thus, the result should be [4,3,2,2].
 		return arr;
 	}
 
+	
+	//medium.com solution
 	public static int[] plusOne(int[] digits) {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		if (digits == null || digits.length == 0) {
