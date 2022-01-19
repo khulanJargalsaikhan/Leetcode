@@ -45,9 +45,9 @@ public class ValidSudoku {
 					
 					String dCol = "col"+col+"val"+board[row][col];
 					
-					String dQuad = ""+row/3 + col/3 + board[row][col];
+					String box = ""+row/3 + col/3 + board[row][col];
 					
-					if(!set.add(dRow)||!set.add(dCol)||!set.add(dQuad)){
+					if(!set.add(dRow)||!set.add(dCol)||!set.add(box)){
 						return false;
 					}
 				}
