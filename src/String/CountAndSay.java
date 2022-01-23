@@ -3,7 +3,7 @@ package String;
 public class CountAndSay {
 
 	public static void main(String[] args) {
-		System.out.println(countAndSay(1));
+		System.out.println(countAndSay(6));
 		System.out.println(countAndSay(4));
 
 	}
@@ -46,12 +46,9 @@ countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
 			int count = 1;
 			for (int j = 1; j < result.length(); j++) 
 			{
-				if (result.charAt(j) == result.charAt(j - 1)) 
-				{
+				if (result.charAt(j) == result.charAt(j - 1)) {
 					count++;
-				} 
-				else 
-				{
+				} else {
 					sb.append(count);
 					sb.append(result.charAt(j - 1));
 					count = 1;

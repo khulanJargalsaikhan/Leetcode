@@ -3,10 +3,11 @@ package String;
 public class StringToInteger {
 
 	public static void main(String[] args) {
-		System.out.println(myAtoi("42"));
+		System.out.println(myAtoi("-+42"));
 		System.out.println(myAtoi("    -42"));
 		System.out.println(myAtoi("4213 words"));
-		System.out.println(myAtoi("ewef4213 words"));
+		System.out.println(myAtoi("2147483646"));
+		System.out.println(myAtoi("-91283472332"));
 
 	}
 	/*
@@ -56,8 +57,7 @@ than -231 should be clamped to -231, and integers greater than 231 - 1 should be
 			int digit = input.charAt(index) - '0';
 
 			// Check overflow and underflow conditions. 
-			if ((result > Integer.MAX_VALUE / 10) || 
-					(result == Integer.MAX_VALUE / 10 && digit > Integer.MAX_VALUE % 10)) {     
+			if ((result > Integer.MAX_VALUE / 10) || (result == Integer.MAX_VALUE / 10 && digit > Integer.MAX_VALUE % 10)) {     
 				// If integer overflowed return 2^31-1, otherwise if underflowed return -2^31.    
 				return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
 			}
