@@ -8,19 +8,41 @@ Output: [5,4,3,2,1]
  */
 
 public class ReverseLinkedList {
+
+	//Iterative solution
 	public ListNode reverseList(ListNode head) {
 
-		ListNode prev = null;
+		ListNode newHead = null;
 		ListNode curr = head;
 
 		while (curr != null){
 			ListNode next = curr.next;
-			curr.next = prev;
-			prev = curr;
+			curr.next = newHead;
+			newHead = curr;
 			curr = next;
 		}
 
-		return prev;
+		return newHead;
 
 	}
+
+
+	// Recursive solution
+	public ListNode reverseList2(ListNode head) { 
+		return recursive (head, null);
+	}
+
+	public ListNode recursive(ListNode head, ListNode newHead){
+
+		if (head == null)
+			return newHead;
+
+		ListNode next = head.next;
+		head.next = newHead;
+		newHead = head;
+		head = next;
+
+		return recursive(head, newHead);
+	}
+
 }
