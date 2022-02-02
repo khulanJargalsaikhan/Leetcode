@@ -18,7 +18,6 @@ Output: false
 	 */
 
 	public boolean isSymmetric(TreeNode root) {
-
 		// if root is empty, then technically it is symmetric
 		if (root == null) return true;
 
