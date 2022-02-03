@@ -1,7 +1,5 @@
 package Tree;
 
-import Tree.MaximumDepthOfBinaryTree.TreeNode;
-
 public class SymmetricTree {
 
 	public static void main(String[] args) {
