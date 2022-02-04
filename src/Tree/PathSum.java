@@ -15,7 +15,7 @@ public class PathSum {
 		tn.left.left.right = new TreeNode(2);
 		tn.right.right.right = new TreeNode(1);
 		
-		System.out.println(hasPathSum(tn, 22));
+		System.out.println(hasPathSum2(tn, 22));
 
 	}
 	/*
@@ -59,9 +59,33 @@ Explanation: The root-to-leaf path with the target sum is shown.
 		}
 
 		return false;
-
-
-
-
 	}
+	
+	// RECURSIVE solution
+	static boolean hasPathSum2(TreeNode root, int targetSum) {
+		if (root == null)
+			return false;
+
+		return DFS(root, targetSum-root.val);
+	}
+	
+	static boolean DFS(TreeNode root, int sum) {
+		
+		boolean leftTree = false;
+		boolean rightTree = false;
+		
+		if (root.left == null && root.right == null && sum == 0)
+			return true;
+		
+		if (root.left != null)
+			leftTree = DFS(root.left, sum - root.left.val);
+		
+		if (root.right != null)
+			rightTree = DFS(root.right, sum - root.right.val);
+		
+		return leftTree || rightTree;
+		
+	}
+	
+	
 }
