@@ -21,6 +21,8 @@ public class ContainsDuplicate {
 		Input: nums = [1,2,3,4]
 		Output: false
 	 */
+	
+	// O(n^2)  
 	public static boolean containsDuplicate(int[] nums) {
 		for (int i=0; i<nums.length-1; i++){  
 			for (int j=i+1; j<nums.length; j++) {
@@ -31,6 +33,7 @@ public class ContainsDuplicate {
 		return false;
 	}
 	
+	// O(n)
 	public static boolean containsDuplicate2(int[] nums) {
 		Set<Integer> myset = new HashSet<>();
 		
