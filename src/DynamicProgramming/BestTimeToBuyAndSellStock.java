@@ -26,6 +26,8 @@ Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
 	 */
 	
+	//time: O(n)
+	//space: O(1)
     public static int maxProfit(int[] prices) {
         int minPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
@@ -33,6 +35,7 @@ Explanation: In this case, no transactions are done and the max profit = 0.
         for(int i=0; i<prices.length; i++) {
         	if(prices[i] < minPrice)
         		minPrice = prices[i];
+        	//if price is greater than min price, then check max profit
         	else if (prices[i] - minPrice > maxProfit)
         		maxProfit = prices[i] - minPrice;
         	
