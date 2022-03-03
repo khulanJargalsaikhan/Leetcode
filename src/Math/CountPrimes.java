@@ -37,7 +37,7 @@ Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
 		   //we can always mark off multiples of i starting at i^2, then in increments of i.
 		   
 		   for (int i = 2; i * i < n; i++) {   // loop stop condition: i < root of n (ex:3 < 3.16)   n=10, root of 10=3.16;
-			   if (!isPrime[i]) 
+			   if (isPrime[i] == false) // if it is false, that means it is already marked off. 
 				   continue;
 			   for (int j = i * i; j < n; j += i) {
 				   isPrime[j] = false;
@@ -46,7 +46,8 @@ Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
 		   int count = 0;
 		   //counting all trues
 		   for (int i = 2; i < n; i++) {
-		      if (isPrime[i]) count++;
+		      if (isPrime[i]) 
+		    	  count++;
 		   }
 		   return count;
 		}
