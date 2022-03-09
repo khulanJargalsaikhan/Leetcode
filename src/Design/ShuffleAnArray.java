@@ -8,6 +8,7 @@ import java.util.Random;
 public class ShuffleAnArray {
 
 	public static void main(String[] args) {
+		System.out.println("---------- solution ------------");
 		Solution solution = new Solution(new int[] {1, 2, 3});
 		System.out.println("shuffling...");
 		System.out.println(Arrays.toString(solution.shuffle()));
@@ -15,6 +16,17 @@ public class ShuffleAnArray {
 		System.out.println(Arrays.toString(solution.reset()));
 		System.out.println("shuffling...");
 		System.out.println(Arrays.toString(solution.shuffle()));
+		
+		
+		System.out.println("---------- solution2 ------------");
+		Solution2 solution2 = new Solution2(new int[] {1, 2, 3});
+		System.out.println("shuffling...");
+		System.out.println(Arrays.toString(solution2.shuffle()));
+		System.out.println("resetting...");
+		System.out.println(Arrays.toString(solution2.reset()));
+		System.out.println("shuffling...");
+		System.out.println(Arrays.toString(solution2.shuffle()));
+		
 		
 //		int[] nums = new int[] {1,2,3};
 //		Solution obj = new Solution(nums);
@@ -101,4 +113,45 @@ solution.shuffle();    // Returns the random shuffling of array [1,2,3]. Example
 	        return array;
 	    }
 	}
+	
+	//Approach #2 Fisher-Yates Algorithm
+	// time: O(n) - space: O(n)
+	static class Solution2{
+		private int[] array;
+		private int[] original;
+		private Random rand = new Random();
+		
+		//constructor
+		public Solution2(int[] nums) {
+			array = nums;
+			original = nums.clone();
+		}
+		//helper method
+		private int getRandNum(int min, int max) {
+			return rand.nextInt(max-min)+min;
+		}
+		
+		public int[] reset() {
+			array = original;
+			original = original.clone();
+			return array;
+		}
+		
+		public int[] shuffle() {
+			for (int i=0; i<array.length; i++) {
+				//swap the elements at the current index and the chosen index
+				//the next range from which we select a random index will not include the most recently processed one.
+				swap(i, getRandNum(i, array.length));
+			}
+			return array;
+		}
+		//helper method
+		private void swap(int i, int j) {
+			int temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		}
+		
+	}
+	
 }
