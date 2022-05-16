@@ -12,22 +12,21 @@ Explanation: [0,-10,5,null,-3,null,9] is also accepted
 public class ConvertSortedArrayToBinarySearchTree {
 	public TreeNode sortedArrayToBST(int[] nums){ 
 
-		if (nums == null || nums.length == 0)
-			return null;
-
 		return constructTreeFromArray(nums, 0, nums.length-1);
 
 	}
 
-	TreeNode constructTreeFromArray(int[] nums, int left, int right){
+	TreeNode constructTreeFromArray(int[] nums, int start, int end){
+		/* index    0   1 2 3 4 
+		 * nums = [-10,-3,0,5,9]
+		 */
+		if (end < start) return null;
 
-		if (left > right) return null;
+		int mid = (start + end)/2;  // mid is root node
+		TreeNode root = new TreeNode(nums[mid]);
+		root.left = constructTreeFromArray(nums, start, mid-1); //this recursion will build left side
+		root.right = constructTreeFromArray(nums, mid+1, end); //this recursion will build right side
 
-		int mid = (right-left)/2 + left;
-		TreeNode node = new TreeNode(nums[mid]);
-		node.left = constructTreeFromArray(nums, left, mid-1);
-		node.right = constructTreeFromArray(nums, mid+1, right);
-
-		return node;
+		return root;
 	}
 }
