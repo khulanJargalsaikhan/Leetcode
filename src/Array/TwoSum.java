@@ -16,12 +16,24 @@ public class TwoSum {
 		//		List<String> words = new ArrayList<String>(Arrays.asList("Hello", "World"));
 		//		words.remove("Hello");
 		//		System.out.println(words);
+
+		System.out.println("Using HashMap and two loop");
 		
 		System.out.println(Arrays.toString(twoSum2(new int[] {5, 3, 5, 7}, 10))); //0,2  1,3
 		System.out.println(Arrays.toString(twoSum2(new int[] {3, 2, 4}, 6)));  //1,2
 		System.out.println(Arrays.toString(twoSum2(new int[] {2, 7, 11, 15}, 9)));  //0,1
 
+		System.out.println("Using HashMap and one loop");
 
+		System.out.println(Arrays.toString(twoSum3(new int[] {5, 3, 5, 7}, 10))); //0,2  1,3
+		System.out.println(Arrays.toString(twoSum3(new int[] {3, 2, 4}, 6)));  //1,2
+		System.out.println(Arrays.toString(twoSum3(new int[] {2, 7, 11, 15}, 9)));  //0,1
+
+		System.out.println("Using two pointer");
+
+		System.out.println(Arrays.toString(twoSum4(new int[] {5, 3, 5, 7}, 10))); //0,2  1,3
+		System.out.println(Arrays.toString(twoSum4(new int[] {3, 2, 4}, 6)));  //1,2
+		System.out.println(Arrays.toString(twoSum4(new int[] {2, 7, 11, 15}, 9)));  //0,1
 	}
 
 	public static int[] twoSum(int[] arr, int target) {
@@ -69,8 +81,37 @@ public class TwoSum {
 				return new int[] {i, mymap.get(res)};
 			}
 		}
-		
 		return null;
-		
+	}
+
+	public static int[] twoSum3(int[] nums, int target) {
+		int[] result = new int[2];
+		Map<Integer, Integer> mymap = new HashMap<>();
+
+		for (int i=0; i<nums.length; i++) {
+			if (mymap.containsKey(target - nums[i])) {
+				result[0] = mymap.get(target-nums[i]);
+				result[1] = i;
+			} else {
+				mymap.put(nums[i], i);
+			}
+		}
+		return result;
+	}
+
+	public static int[] twoSum4(int[] nums, int target) {
+
+		//Arrays.sort(nums);
+		int i = 0, j=nums.length-1;
+		while (i < nums.length){
+			if (nums[i] + nums[j] == target){
+				return new int[] {i,j};
+			} else if (nums[i] + nums[j] > target){
+				j--;
+			} else {
+				i++;
+			}
+		}
+		return null;
 	}
 }
