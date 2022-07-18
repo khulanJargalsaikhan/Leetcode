@@ -23,6 +23,10 @@ Explanation: The values that are present in at least two arrays are:
         System.out.println(twoOutOfThree2(new int[] {1,1,3,2}, new int[] {2,3}, new int[] {3})); //[3,2]
         System.out.println(twoOutOfThree2(new int[] {3,1}, new int[] {2,3}, new int[] {1,2}));    //[2,3,1]
         System.out.println(twoOutOfThree2(new int[] {1,2,2}, new int[] {4,3,3}, new int[] {5}));  //[]
+
+        System.out.println(twoOutOfThree3(new int[] {1,1,3,2}, new int[] {2,3}, new int[] {3})); //[3,2]
+        System.out.println(twoOutOfThree3(new int[] {3,1}, new int[] {2,3}, new int[] {1,2}));    //[2,3,1]
+        System.out.println(twoOutOfThree3(new int[] {1,2,2}, new int[] {4,3,3}, new int[] {5}));  //[]
     }
 
     public static List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
@@ -64,5 +68,38 @@ Explanation: The values that are present in at least two arrays are:
         return list;
     }
 
+    public static List<Integer> twoOutOfThree3(int[] nums1, int[] nums2, int[] nums3) {
+        List<Integer> list = new ArrayList<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
+        HashSet<Integer> set=new HashSet<>();
+
+        //loop through nums1 and save all unique digits as a key and count the frequency of the digits
+        for(int i : nums1)
+            if(!map.containsKey(i))
+                map.put(i,1);
+        //loop through nums2, if digits not in the map, then put them into the map also into the set
+        //so that, we will not count the duplicates of digits from same array.
+        for(int i : nums2) {
+            if(!map.containsKey(i)) {
+                map.put(i,1);
+                set.add(i);
+            } else {
+                //if a digit is in the map, but not in the set, then we put it into the map and increase frequency by 1
+                if(!set.contains(i))
+                    map.put(i,2);
+            }
+        }
+        //for the 3rd array, we only care about the digits already in the map
+        //because we are looking for digits that exit in two out of three arrays.
+        for(int i : nums3)
+            if(map.containsKey(i))
+                map.put(i,map.getOrDefault(i,0)+1);
+        //get the values that is greater than 1, and put them into the list
+        for(Integer key : map.keySet())
+            if(map.get(key)>1)
+                list.add(key);
+
+        return list;
+    }
 
 }
