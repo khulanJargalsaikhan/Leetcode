@@ -22,6 +22,9 @@ Box 1 has the most number of balls with 2 balls.
 public class MaximumNumberofBallsinaBox {
     public static void main(String[] args) {
         System.out.println(countBalls(1,10));
+
+        System.out.println(countBalls2(1,10));
+
     }
     //brute force solution
     public static int countBalls(int lowLimit, int highLimit) {
@@ -44,4 +47,33 @@ public class MaximumNumberofBallsinaBox {
         }
         return result;
     }
+    //better solution
+    public static int countBalls2(int lowLimit, int highLimit) {
+        int result = 0;
+        /* Constraints: 1 <= lowLimit <= highLimit <= 10^5
+        10^5 = 100000 = 1
+        99999 = 9+9+9+9+9 = 45
+        45 + 1 = 46
+         */
+        int[] pool = new int[46];
+        for (int i = lowLimit; i <= highLimit; i++){
+            //we need helper method to find out sum of digits
+            pool[digitSum(i)]++;
+        }
+        for (int i=0; i<46; i++){
+            result = Math.max(result, pool[i]);
+        }
+        return result;
+    }
+
+    //helper method return sum of digits
+    public static int digitSum(int digit){
+        int sum = 0;
+        while (digit > 0){
+            sum += digit % 10;
+            digit = digit / 10;
+        }
+        return sum;
+    }
+
 }
