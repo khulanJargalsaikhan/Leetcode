@@ -4,9 +4,12 @@ public class ReverseWordsInaStringIII {
     public static void main(String[] args) {
         System.out.println(reverseWords("Let's take LeetCode contest"));  //"s'teL ekat edoCteeL tsetnoc"
         System.out.println(reverseWords("God Ding"));  //"doG gniD"
+
+        System.out.println(reverseWords2("Let's take LeetCode contest"));  //"s'teL ekat edoCteeL tsetnoc"
+        System.out.println(reverseWords2("God Ding"));  //"doG gniD"
     }
 
-   //brute force approach
+   //brute force approach time: O(n)
     public static String reverseWords(String s) {
         StringBuilder result = new StringBuilder();
         //lastSpaceIndex will be updated everytime we find the space
@@ -32,4 +35,29 @@ public class ReverseWordsInaStringIII {
         }
         return result.toString();
     }
+
+    //reverse a string using a two-pointer approach
+    public static String reverseWords2(String s) {
+        char[] strArr = s.toCharArray();
+        int lastSpaceIndex = -1;
+        for (int i=0; i<s.length(); i++){
+            if (strArr[i] == ' ' || i == s.length()-1){
+                int startIndex = lastSpaceIndex + 1;
+                int endIndex = i-1;
+                //Find the start and end index of every word given by startIndex and endIndex.
+                //Swap the characters in the word pointed by startIndex and endIndex.
+                //Increment startIndex by 1 and decrement endIndex by 1.
+                while (startIndex < endIndex){
+                    char temp = strArr[startIndex];
+                    strArr[startIndex] = strArr[endIndex];
+                    strArr[endIndex] = temp;
+                    startIndex++;
+                    endIndex--;
+                }
+                lastSpaceIndex = i;
+            }
+        }
+        return new String(strArr);
+    }
+
 }
