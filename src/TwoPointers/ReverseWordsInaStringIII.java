@@ -42,8 +42,9 @@ public class ReverseWordsInaStringIII {
         int lastSpaceIndex = -1;
         for (int i=0; i<s.length(); i++){
             if (strArr[i] == ' ' || i == s.length()-1){
+                //endIndex will be different for the last word
+                int endIndex = s.charAt(i) == ' ' ? i-1 : i;
                 int startIndex = lastSpaceIndex + 1;
-                int endIndex = i-1;
                 //Find the start and end index of every word given by startIndex and endIndex.
                 //Swap the characters in the word pointed by startIndex and endIndex.
                 //Increment startIndex by 1 and decrement endIndex by 1.
