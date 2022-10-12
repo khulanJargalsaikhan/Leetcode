@@ -1,9 +1,15 @@
 package HashTable;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class NumberOfArithmeticTriplets {
     public static void main(String[] args) {
         System.out.println(arithmeticTriplets(new int[] {0,1,4,6,7,10}, 3)); //2
         System.out.println(arithmeticTriplets(new int[] {4,5,6,7,8,9}, 2));  //2
+
+        System.out.println(arithmeticTriplets2(new int[] {0,1,4,6,7,10}, 3)); //2
+        System.out.println(arithmeticTriplets2(new int[] {4,5,6,7,8,9}, 2));  //2
 
     }
     /*
@@ -27,6 +33,20 @@ Return the number of unique arithmetic triplets.
             }
         }
 
+        return count;
+    }
+
+    //optimized solution
+    public static int arithmeticTriplets2(int[] nums, int diff) {
+        int count = 0;
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums){
+            //7-3=4 && 7-(3*2)=1   (7,4,1)
+            if (set.contains(num-diff) && set.contains(num-(diff*2))){
+                count++;
+            }
+            set.add(num);
+        }
         return count;
     }
 
