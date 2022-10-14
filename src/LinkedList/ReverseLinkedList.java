@@ -29,6 +29,7 @@ public class ReverseLinkedList {
 
 	// Recursive solution
 	public ListNode reverseList2(ListNode head) { 
+
 		return recursive (head, null);
 	}
 
