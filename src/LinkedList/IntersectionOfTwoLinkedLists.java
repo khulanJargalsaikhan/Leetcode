@@ -1,8 +1,6 @@
 package LinkedList;
 
-import java.sql.SQLOutput;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class IntersectionOfTwoLinkedLists {
@@ -29,6 +27,7 @@ public class IntersectionOfTwoLinkedLists {
         nodeB3.next = headC1;
 
         System.out.println(getIntersectionNode(headA1,headB1));  //8
+        System.out.println(getIntersectionNode2(headA1,headB1));  //8
 
 
     }
@@ -49,5 +48,25 @@ public class IntersectionOfTwoLinkedLists {
                 b_pointer = b_pointer.next;
         }
         return a_pointer;
+    }
+
+    public static ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+        Set<ListNode> myset = new HashSet<>();
+        while (headA != null){
+            System.out.println("headA " + headA);
+            myset.add(headA);
+            headA = headA.next;
+        }
+        System.out.println("myset " + myset);
+
+        while(headB != null){
+            System.out.println("headB " + headB);
+            if(myset.contains(headB))
+                return headB;
+            headB = headB.next;
+        }
+        System.out.println("myset " + myset);
+        return null;
     }
 }
