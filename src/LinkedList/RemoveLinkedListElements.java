@@ -18,6 +18,7 @@ public class RemoveLinkedListElements {
         nodeA6.next = nodeA7;
 
         System.out.println(removeElements(headA1, 6)); //[1,2,3,4,5]
+        System.out.println(removeElements2(headA1, 6)); //[1,2,3,4,5]
 
         ListNode headB1 = new ListNode(7);
         ListNode nodeB2 = new ListNode(7);
@@ -29,18 +30,53 @@ public class RemoveLinkedListElements {
         nodeB3.next = nodeB4;
 
         System.out.println(removeElements(headB1, 7)); //[]
+        System.out.println(removeElements2(headB1, 7)); //[]
+
+        ListNode headC1 = new ListNode(2);
+        ListNode nodeC2 = new ListNode(3);
+        ListNode nodeC3 = new ListNode(1);
+        ListNode nodeC4 = new ListNode(2);
+        ListNode nodeC5 = new ListNode(2);
+
+        headC1.next = nodeC2;
+        nodeC2.next = nodeC3;
+        nodeC3.next = nodeC4;
+        nodeC4.next = nodeC5;
+
+        System.out.println(removeElements(headC1, 2)); //[3,1]
+        System.out.println(removeElements2(headC1, 2)); //[3,1]
+
+
     }
-    public static ListNode removeElements(ListNode head, int val) {
+
+
+    public static ListNode removeElements(ListNode  head, int val) {
         if (head == null) return null;
-        ListNode pre = new ListNode();
-        pre.next = head;
-        ListNode node = pre;
-        while (pre.next != null){
-            if (pre.next.val == val)
-                pre.next = pre.next.next;
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode pre = dummy;
+        while (dummy.next != null){
+            if (dummy.next.val == val)
+                dummy.next = dummy.next.next;
             else
-                pre = pre.next;
+                dummy = dummy.next;
         }
-        return node.next;
+        return pre.next;
+    }
+
+    public static ListNode removeElements2(ListNode head, int val) {
+        if (head == null) return null;
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode pre = dummy;
+        while (head != null){
+            if (head.val == val) {
+                pre.next = head.next;
+            } else {
+                pre = head;
+            }
+            head = head.next;
+        }
+        return dummy.next;
     }
 }
