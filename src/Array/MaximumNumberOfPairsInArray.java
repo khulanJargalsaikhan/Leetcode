@@ -1,12 +1,12 @@
 package Array;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MaximumNumberOfPairsInArray {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(numberOfPairs(new int[]{1,3,2,1,3,2,2})));
+        System.out.println(Arrays.toString(numberOfPairs(new int[]{1,3,2,1,3,2,2}))); //[3,1]
+        System.out.println(Arrays.toString(numberOfPairs2(new int[]{1,3,2,1,3,2,2}))); //[3,1]
+
     }
 
     //brute force solution - used HashMap
@@ -32,6 +32,24 @@ public class MaximumNumberOfPairsInArray {
         ans[0] = ans0;
         ans[1] = ans1;
 
+        return ans;
+    }
+
+    //better solution
+    public static int[] numberOfPairs2(int[] nums) {
+        int[] ans = new int[2];
+        Set<Integer> set = new HashSet<>();
+        int pair = 0;
+        for(int num : nums){
+            if (!set.contains(num)){
+                set.add(num);
+            } else {
+                set.remove(num);
+                pair++;
+            }
+        }
+        ans[0] = pair;
+        ans[1] = set.size();
         return ans;
     }
 }
