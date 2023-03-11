@@ -4,6 +4,9 @@ public class ProjectionAreaOf3DShapes {
     public static void main(String[] args) {
         System.out.println(projectionArea(new int[][] {{1,2},{3,4}})); //17
         System.out.println(projectionArea(new int[][] {{1,0},{0,2}})); //8
+
+        System.out.println(projectionArea2(new int[][] {{1,2},{3,4}})); //17
+        System.out.println(projectionArea2(new int[][] {{1,0},{0,2}})); //8
     }
     //brute force solution
     // Run-Time Complexity Analysis - O (n^2)
@@ -44,6 +47,24 @@ public class ProjectionAreaOf3DShapes {
 
         sum += z;
         return sum;
+    }
+    //better solution
+    public static int projectionArea2(int[][] grid) {
+        int sum = 0;
+        int zCount = 0;
+        for (int i=0; i<grid.length; i++){
+            int xMax = -1;
+            int yMax = -1;
+            for (int j=0; j<grid.length; j++){
+                xMax = Math.max(xMax, grid[i][j]);
+                yMax = Math.max(yMax, grid[j][i]);
+                if (grid[i][j] > 0){
+                    zCount++;
+                }
+            }
+            sum += xMax + yMax;
+        }
+        return sum+zCount;
     }
 }
 
